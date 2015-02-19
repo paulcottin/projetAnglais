@@ -53,6 +53,29 @@ nav li{
 	text-align: center;
 }
 
+.cadre{
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: 50px;
+	text-align:center;
+	height: 400px;
+	width: 20px;
+	border: solid 2px;
+	border-color: #005377;
+}
+
+#barre{
+	height: 0px;
+	width: 20px;
+	background-color: #005377;
+}
+
+.texte{
+	text-align: center;
+	font-size: 26px;
+	font-weight: bold;
+}
+
 .button{
 	color: white;
 	font-size: 30px;	
