@@ -1,0 +1,106 @@
+html{
+	background-color: #00A2E8;
+	font-family: 'segoe UI';
+	color: white;
+}
+
+nav{
+	display: inline-block;
+}
+
+nav ul{
+	list-style-type: none;
+}
+
+nav li{
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.centerWhite70{
+	text-align: center;
+	font-size: 70px;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: -85px;
+	
+}
+
+#cercle{
+	background:#005377;
+	border-radius:50%;
+	width:160px;
+	height:160px; 
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.align35{
+	text-align: center;
+	font-size: 35px;
+}
+
+.align40{
+	font-size: 40px;
+	text-align: center;
+}
+
+.align{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.button{
+	color: white;
+	font-size: 30px;	
+	border: 1px solid #656565;
+	background:#005377;
+	text-align: center;
+	margin: 0 auto;
+	margin: 10px;
+	border-radius: 10px;
+}
+
+.commentaire{
+	font-size: 19px;
+	border: 1px dotted;
+	width: 800px;
+}
+
+.commentairesPrecedents{
+	float: left;
+	width: 80%;
+}
+
+.nbCommentaires{
+	float: left;
+	width: 80%;
+	text-align: right;
+}
+
+.submitButton{
+	vertical-align: top;
+	margin-left: 40px;
+	color: white;
+	font-size: 30px;
+	width: 150px;
+	height: 150px;
+	border: 1px solid #656565;
+	background:#005377;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.infoForm{
+	display: inline-block;
+	text-align: right;
+}
+
+.text20{
+	font-size: 20px;
+	text-align: left;
+	color: white;
+}
