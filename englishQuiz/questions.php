@@ -6,7 +6,7 @@
         <title>English Quiz</title>
             <script type="text/javascript">
             var i=0;
-            var temps = 10;
+            var temps = 25; //=10s
             function progression(timer){
                 if(i<=parseInt(document.getElementById('cadre').clientHeight)){
                     var compteur=0;
