@@ -60,7 +60,7 @@ $false2 = $data['rep3'];
 $false3 = $data['rep4'];
 
 $reponses = array(0=>$true, 1=>$false1, 2=>$false2, 3=>$false3);
-$i = rand(0,4);
+$i = rand(0,3);
 $rep1 = $reponses[$i];
 $rep2 = $reponses[($i+1)%4];
 $rep3 = $reponses[($i+2)%4];
@@ -75,6 +75,8 @@ $rep4 = $reponses[($i+3)%4];
 
             var i=0;
             var temps = 10;
+            var aRepondu = 0;
+
             function progression(timer){
                 if(i<=parseInt(document.getElementById('cadre').clientHeight)){
                     var compteur=0;
@@ -93,13 +95,19 @@ $rep4 = $reponses[($i+3)%4];
             function verif(id){
                 var object = document.getElementById(id);
                 var chaine = '<?php echo $reponses[0]; ?>';
+                if (aRepondu == 0) {
                     if(object.value == chaine){
                         object.style.backgroundColor="#00FF33";
-                        //document.location.href="questions.php?id_theme=<?php echo $id_theme; ?>"; 
+                       /* document.location.href="questions.php?id_theme=<?php echo $id_theme; ?>"; */
                     }else{
                         object.style.backgroundColor="#FF1500";
-                        //document.location.href="questions.php?id_theme=<?php echo $id_theme; ?>";
+                        if (document.getElementById('rep1').value == chaine) {document.getElementById('rep1').style.backgroundColor="#00FF33";}
+                        if (document.getElementById('rep2').value == chaine) {document.getElementById('rep2').style.backgroundColor="#00FF33";}
+                        if (document.getElementById('rep3').value == chaine) {document.getElementById('rep3').style.backgroundColor="#00FF33";}
+                        if (document.getElementById('rep4').value == chaine) {document.getElementById('rep4').style.backgroundColor="#00FF33";}
                     }
+                    aRepondu = 1;
+                }
             }
         </script>
     </head>
