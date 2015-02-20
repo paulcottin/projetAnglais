@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style.css">
-        <title>English Quiz</title>
             <script type="text/javascript">
             var i=0;
             var temps = 10;
@@ -18,21 +17,30 @@
                     setTimeout("progression(temps);", timer);
                     i++;   
                 }
-                else
-                    alert("Chargement Termine! Vous pourriez ensuite envisager d'utiliser une iframe pour afficher votre site ...");
+                //else
+                    //alert("Chargement Termine! Vous pourriez ensuite envisager d'utiliser une iframe pour afficher votre site ...");
             }
         </script>
     </head>
     <body onload="progression(temps)">
         <noscript class="cadre">Vous devez activer le Javascript pour pouvoir visiter ce site !</noscript>
         <body>
-    <p class="centerWhite70">English Quiz</p>
         <div class="align">
-            <input type="button" class="button" name="choix" value="Jouer"/><br/>
-            <input type="button" class="button" name="choix" value="Classement"/><br/>
-            <input type="button" class="button" name="choix" value="Proposer une question"/><br/>
-        </div>
-    </body>
+            <div class="question">
+                <p style= "margin:auto;">
+                    Mais où est la question ??
+                </p>
+            </div>
+                <div>
+                    <input type="submit" class="questionButton" name="rep1" value="Réponse1"/>
+                    <input type="submit" class="questionButton" name="rep2" value="Réponse2"/></br>
+                </div>
+                <div>
+                    <input type="submit" class="questionButton" name="rep3" value="Réponse3"/>
+                    <input type="submit" class="questionButton" name="rep4" value="Réponse4"/>
+                </div>
+            </div>
+        </body>
         <div class="cadre" id="cadre">
             <div id="barre">
                 <span class="texte" id="pourcentage"></span>
