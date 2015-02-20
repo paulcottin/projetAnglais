@@ -9,9 +9,9 @@
     <body>
     <p class="centerWhite70">English Quiz</p>
         <div class="align">
-            <input type="button" class="button" name="choix" value="Play"/><br/>
-            <input type="button" class="button" name="choix" value="Rank"/><br/>
-            <input type="button" class="button" name="choix" value="Submit a question"/><br/>
+            <a href="Theme.php" class="button" name="choix" style="text-decoration:none; margin:5%">Play </a> <br/><br/>
+            <a href="" class="button" name="choix" style="text-decoration:none">Rank </a> <br/><br/>
+            <a href="ajoutQuestion.php" class="button" name="choix" style="text-decoration:none">Submit a question </a> <br/>
         </div>
     </body>
 </html>
