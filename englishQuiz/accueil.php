@@ -8,9 +8,9 @@
     <body>
     <p class="centerWhite70">English Quiz</p>
         <div class="align">
-            <input type="button" class="button" name="choix" value="Jouer"/><br/>
-            <input type="button" class="button" name="choix" value="Classement"/><br/>
-            <input type="button" class="button" name="choix" value="Proposer une question"/><br/>
+            <input type="button" class="button" name="choix" value="Play"/><br/>
+            <input type="button" class="button" name="choix" value="Rank"/><br/>
+            <input type="button" class="button" name="choix" value="Submit a question"/><br/>
         </div>
     </body>
 </html>
