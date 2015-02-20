@@ -30,7 +30,7 @@
                        </select>
                 </span>
                 <span style="float:right;vertical-alignement:top">
-                        <p class="text20">Responses</p>
+                        <p class="text20">Responses :</p>
                         <input type="text" class="questionButton" name="rep1" placeholder="true response"/>
                         <input type="text" class="questionButton" name="rep2" placeholder="false response"/>
                         <br/>
