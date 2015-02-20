@@ -104,17 +104,17 @@ nav li{
 	text-align: right;
 }
 
-.submitButton{
+.questionButton{
 	vertical-align: top;
-	margin-left: 40px;
+	margin-left: 20%;
 	color: white;
 	font-size: 30px;
-	width: 150px;
+	width: 250px;
 	height: 150px;
 	border: 1px solid #656565;
 	background:#005377;
 	text-align: center;
-	margin: 0 auto;
+	margin: 0.5% auto;
 }
 
 .infoForm{
