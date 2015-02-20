@@ -22,8 +22,9 @@ nav li{
 	font-size: 70px;
 	margin-left: auto;
 	margin-right: auto;
-	vertical-align: -85px;
-	
+	vertical-align: 2085px;
+	margin-top: 10px;
+	margin-bottom: 40px;	
 }
 
 #cercle{
@@ -45,6 +46,8 @@ nav li{
 .align40{
 	font-size: 40px;
 	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;	
 }
 
 .align{
