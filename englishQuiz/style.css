@@ -22,7 +22,15 @@ nav li{
 	font-size: 70px;
 	margin-left: auto;
 	margin-right: auto;
-	vertical-align: 2085px;
+	margin-top: 10px;
+	margin-bottom: 40px;	
+}
+
+.centerWhite50{
+	text-align: center;
+	font-size: 50px;
+	margin-left: auto;
+	margin-right: auto;
 	margin-top: 10px;
 	margin-bottom: 40px;	
 }
