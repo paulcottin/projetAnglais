@@ -96,6 +96,11 @@ nav li{
 	margin: 0 auto;
 	margin: 10px;
 	border-radius: 10px;
+	padding-right:7px; 
+	padding-left:7px; 
+	padding-top:5px; 
+	padding-bottom:5px; 
+	text-decoration:none;
 }
 
 .commentaire{
