@@ -91,13 +91,14 @@ $rep4 = $reponses[($i+3)%4];
             }
 
             function verif(id){
-                alert('clic');
                 var object = document.getElementById(id);
                 var chaine = '<?php echo $reponses[0]; ?>';
                     if(object.value == chaine){
                         object.style.backgroundColor="#00FF33";
+                        //document.location.href="questions.php?id_theme=<?php echo $id_theme; ?>"; 
                     }else{
                         object.style.backgroundColor="#FF1500";
+                        //document.location.href="questions.php?id_theme=<?php echo $id_theme; ?>";
                     }
             }
         </script>
