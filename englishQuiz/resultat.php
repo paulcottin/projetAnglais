@@ -48,9 +48,8 @@ $_SESSION['score'] = 0
 						?>
 
 
-    
-        <div class="align">
-            <input type="button" class="button" name="home" value="Home"/><br/>
-        </div>
+    <div class= "align">
+    <a href="accueil.php" class="button" name="choix" style="text-decoration:none; margin:5%">Home</a>
+       	</div>
     </body>
 </html>
