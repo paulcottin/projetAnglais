@@ -10,6 +10,10 @@ if (!isset($_SESSION['nb_qts_posees'])) {
     $_SESSION['nb_qts_posees'] = 0;
 }
 
+if (!isset($_SESSION['score'])) {
+    $_SESSION['score'] = 0;
+}
+
 if ($_SESSION['nb_qts_posees'] > 20) {
     header("Location: resultat.php");
 }
@@ -21,34 +25,51 @@ try{
     die('Erreur : ' . $e->getMessage());
 }
 
-$sql = "SELECT count(id) FROM questions";
+$sql = "SELECT count(id) FROM questions WHERE id_theme='$id_theme'";
 
 $req = $db->query($sql);
 
 $nb_qts = $req->fetch()[0];
 $nb_qts = $nb_qts + 0;  //Conversion en int
 
-
-
 $req->closeCursor();
 
-//Tant qu'on a pas trouvé une question qui n'a pas déjà été posée on change de question
+/*echo "id_theme : ".$id_theme." Nombre de questions : ".$nb_qts."<br/>";*/
+
+//On récupère tous les id de qts de cette catégorie
+$sql = "SELECT id FROM questions WHERE id_theme='$id_theme'";
+
+$req = $db->query($sql);
+
+
+$qts_theme = array();
+while (($id_qt = $req->fetch()) != null) {
+   // echo "_".$id_qt[0]."<br/>";
+    array_push($qts_theme, $id_qt[0]);
+}
+$req->closeCursor();
+/*echo "count array : ".count($qts_theme)."<br/>";
+for ($i=0; $i < count($qts_theme); $i++) { 
+        echo "_".$qts_theme[$i]."<br/>";
+}*/
+
+//Tant qu'on a pas trouvé une question qui n'a pas déjà été posée on change de question dans cette catégorie
 $i=0;
 do{
     $i++;
-    $id_qt = rand(1, $nb_qts);
+    $id_qt = rand(0, count($qts_theme)-1);
     if ($i > 1000*$nb_qts) {
         echo "probleme";
         session_unset();    
     }
 }while(array_search($id_qt, $_SESSION['qts_posees']) != FALSE);
 
+//echo "id : ".$id_qt.", Qt choisie : ".$qts_theme[$id_qt];
 
-
-array_push($_SESSION['qts_posees'], $id_qt);
+array_push($_SESSION['qts_posees'], $qts_theme[$id_qt]);
 $_SESSION['nb_qts_posees']++;
 
-$sql = "SELECT * FROM questions WHERE id='$id_qt'";
+$sql = "SELECT * FROM questions WHERE id='$qts_theme[$id_qt]'";
 
 $req = $db->query($sql);
 
@@ -74,30 +95,39 @@ $rep4 = $reponses[($i+3)%4];
             <script type="text/javascript">
 
             var i=0;
-            var temps = 10;
+            var temps = 3; //50
             var aRepondu = 0;
+            var chaine = '<?php echo $reponses[0]; ?>';
+            var score = 0;
 
             function progression(timer){
                 if(i<=parseInt(document.getElementById('cadre').clientHeight)){
                     var compteur=0;
                     document.getElementById("barre").style.height= i+"px";
-                    while(compteur<=100)
+                    while(compteur<=100){
                         compteur++;
+                        if (aRepondu != 0) {return;};
+                    }
                     if(i>40)
                         document.getElementById("pourcentage").innerHTML=parseInt(i/(parseInt(document.getElementById('cadre').clientHeight)/100))+"%";
                     setTimeout("progression(temps);", timer);
                     i++;   
                 }
-                //else
-                    //alert("Chargement Termine! Vous pourriez ensuite envisager d'utiliser une iframe pour afficher votre site ...");
+                else{
+                    aRepondu = 1;
+                    if (document.getElementById('rep1').value == chaine) {document.getElementById('rep1').style.backgroundColor="#00FF33";}
+                    if (document.getElementById('rep2').value == chaine) {document.getElementById('rep2').style.backgroundColor="#00FF33";}
+                    if (document.getElementById('rep3').value == chaine) {document.getElementById('rep3').style.backgroundColor="#00FF33";}
+                    if (document.getElementById('rep4').value == chaine) {document.getElementById('rep4').style.backgroundColor="#00FF33";}
+                }
             }
 
             function verif(id){
                 var object = document.getElementById(id);
-                var chaine = '<?php echo $reponses[0]; ?>';
                 if (aRepondu == 0) {
                     if(object.value == chaine){
                         object.style.backgroundColor="#00FF33";
+                        score = 5;
                        /* document.location.href="questions.php?id_theme=<?php echo $id_theme; ?>"; */
                     }else{
                         object.style.backgroundColor="#FF1500";
@@ -111,30 +141,39 @@ $rep4 = $reponses[($i+3)%4];
             }
         </script>
     </head>
-    <body onload="progression(temps)">
+    <body onload="progression(temps)" onunload="">
         <noscript class="cadre">Vous devez activer le Javascript pour pouvoir visiter ce site !</noscript>
-        <body>
-        <div class="align">
-            <div class="question">
-                <p style= "margin:auto">
-                    <?php echo $question; ?>
-                </p>
-            </div>
-                <div>
-                    <input id="rep1" type="submit" class="questionButton" name="rep1" value="<?php echo $rep1; ?>" onClick="verif('rep1');"/>
-                    <input id="rep2" type="submit" class="questionButton" name="rep2" value="<?php echo $rep2; ?>" onClick="verif('rep2');"/></br>
+        <p>Score<br/><?php echo $_SESSION['score']; ?> </p>
+        <span style="position:absolute; left:25%; top:2%">
+            <div>
+                <div class="align">
+                    <div class="question">
+                        <p style= "margin:auto">
+                            <?php echo $question; ?>
+                        </p>
+                    </div>
                 </div>
                 <div>
-                    <input id="rep3" type="submit" class="questionButton" name="rep3" value="<?php echo $rep3; ?>" onClick="verif('rep3');"/>
-                    <input id="rep4" type="submit" class="questionButton" name="rep4" value="<?php echo $rep4; ?>" onClick="verif('rep4');"/>
+                    <div>
+                        <input id="rep1" type="submit" class="questionButton" name="rep1" value="<?php echo $rep1; ?>" onClick="verif('rep1');"/>
+                        <input id="rep2" type="submit" class="questionButton" name="rep2" value="<?php echo $rep2; ?>" onClick="verif('rep2');"/>
+                    </div>
+                    </br>
+                    <div>
+                        <input id="rep3" type="submit" class="questionButton" name="rep3" value="<?php echo $rep3; ?>" onClick="verif('rep3');"/>
+                        <input id="rep4" type="submit" class="questionButton" name="rep4" value="<?php echo $rep4; ?>" onClick="verif('rep4');"/>
+                    </div>
                 </div>
             </div>
-        </body>
-        <div class="cadre" id="cadre">
+        </span>
+        
+        <span class="cadre" id="cadre" style="position:absolute; right:12%; top:15%">
             <div id="barre">
                 <span class="texte" id="pourcentage"></span>
             </div>
+        </span>
+        <div>
+            <a href="questions.php?id_theme=<?php echo($id_theme); ?>" style="position:absolute; right:13%; bottom:5%;" class="button">Next</a>
         </div>
     </body>
-
 </html>
