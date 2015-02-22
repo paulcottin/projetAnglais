@@ -5,11 +5,47 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>English Quiz</title>
     </head>
+    <script type="text/javascript">
+    var ok = 1
+
+    function check() {
+        var qtBox = document.getElementById('questionBox');
+        var list = document.getElementById('theme');
+        var rep1 = document.getElementById('rep1');
+        var rep2 = document.getElementById('rep2');
+        var rep3 = document.getElementById('rep3');
+        var rep4 = document.getElementById('rep4');
+
+        if (qtBox.value == "") {
+            ok = 0;
+            alert('Thanks to fill the question')
+        }
+        if (list.value == "default") {ok = 0;
+            alert('Thanks to fill the theme')
+        }
+        if (rep1.value == "") {ok = 0;
+            alert('Thanks to fill the 1st response')
+        }
+        if (rep2.value == "") {ok = 0;
+            alert('Thanks to fill the 2nd response')
+        }
+        if (rep3.value == "") {ok = 0;
+            alert('Thanks to fill the 3rd response')
+        }
+        if (rep4.value == "") {ok = 0;
+            alert('Thanks to fill the 4th response')
+        }
+        if (ok == 1)
+            return true;
+        else
+            return false;
+    }
+    </script>
     <body>
         <p class="centerWhite70">English Quiz</p>
         <p class="align40">Add a question</p>
         <div>
-            <form method="post" action="processingAddQt.php">
+            <form method="post" action="processingAddQt.php" onsubmit="return check()">
                 <span style="float:left">
                     <p class="text20">Question :</p>
                     <textarea type="message" name="question" id="questionBox" rows="10" cols="50"></textarea><br/>
@@ -32,12 +68,12 @@
                 </span>
                 <span style="float:right;vertical-alignement:top">
                         <p class="text20">answers :</p>
-                        <input type="text" class="questionButton" name="rep1" placeholder="true answer"/>
-                        <input type="text" class="questionButton" name="rep2" placeholder="false answer"/>
+                        <input type="text" class="questionButton" id="rep1" name="rep1" placeholder="true answer"/>
+                        <input type="text" class="questionButton" id="rep2" name="rep2" placeholder="false answer"/>
                         <br/>
                         <div>
-                            <input type="text" class="questionButton" name="rep3" placeholder="false answer"/>
-                            <input type="text" class="questionButton" name="rep4" placeholder="false answer"/>
+                            <input type="text" class="questionButton" id="rep3" name="rep3" placeholder="false answer"/>
+                            <input type="text" class="questionButton" id="rep4" name="rep4" placeholder="false answer"/>
                         </div>
                 </span>
             </form>
