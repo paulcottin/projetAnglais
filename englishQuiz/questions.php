@@ -103,7 +103,7 @@ $rep4 = $reponses[($i+3)%4];
             var temps = 3; //50
             var aRepondu = 0;
             var chaine = '<?php echo $reponses[0]; ?>';
-            var score = 0;
+            var resultat = 0;
 
             function progression(timer){
                 if(i<=parseInt(document.getElementById('cadre').clientHeight)){
@@ -131,8 +131,8 @@ $rep4 = $reponses[($i+3)%4];
                 var object = document.getElementById(id);
                 if (aRepondu == 0) {
                     if(object.value == chaine){
+                        resultat = 1
                         object.style.backgroundColor="#00FF33";
-                        score = 5;
                        /* document.location.href="questions.php?id_theme=<?php echo $id_theme; ?>"; */
                     }else{
                         object.style.backgroundColor="#FF1500";
@@ -144,6 +144,15 @@ $rep4 = $reponses[($i+3)%4];
                     aRepondu = 1;
                 }
             }
+
+            function setLink() {
+                var tps = i/401*20; //401 : maximum de i, 20 : 20sec
+                if (resultat == 1) 
+                document.getElementById('submitButton').href = 'processingScore.php?id_theme=<?php echo($id_theme); ?>&ok=true&tps='+tps;
+                else
+                document.getElementById('submitButton').href = 'processingScore.php?id_theme=<?php echo($id_theme); ?>&ok=false&tps='+i; //ici on se moque du temps
+            }
+
         </script>
     </head>
     <body onload="progression(temps)" onunload="">
@@ -178,7 +187,7 @@ $rep4 = $reponses[($i+3)%4];
             </div>
         </span>
         <div>
-            <a href="questions.php?id_theme=<?php echo($id_theme); ?>" style="position:absolute; right:13%; bottom:5%;" class="button">Next</a>
+            <a id="submitButton" href="" style="position:absolute; right:13%; bottom:5%;" class="button" onclick="setLink()">Next</a>
         </div>
     </body>
 </html>
