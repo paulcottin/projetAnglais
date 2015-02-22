@@ -58,18 +58,23 @@ $i=0;
 do{
     $i++;
     $id_qt = rand(0, count($qts_theme)-1);
+    $id_qt = $qts_theme[$id_qt];
     if ($i > 1000*$nb_qts) {
-        echo "probleme";
+        echo "erreur, pas de questions non posées trouvées";
         session_unset();    
     }
-}while(array_search($id_qt, $_SESSION['qts_posees']) != FALSE);
+}while(in_array($id_qt, $_SESSION['qts_posees']) != FALSE);
 
 //echo "id : ".$id_qt.", Qt choisie : ".$qts_theme[$id_qt];
 
-array_push($_SESSION['qts_posees'], $qts_theme[$id_qt]);
+array_push($_SESSION['qts_posees'], $id_qt);
 $_SESSION['nb_qts_posees']++;
 
-$sql = "SELECT * FROM questions WHERE id='$qts_theme[$id_qt]'";
+/*echo "nb qts_posees : ".$_SESSION['nb_qts_posees'];
+for ($i=0; $i < count($_SESSION['qts_posees']); $i++) { 
+        echo "_".$_SESSION['qts_posees'][$i]."<br/>";
+}*/
+$sql = "SELECT * FROM questions WHERE id='$id_qt'";
 
 $req = $db->query($sql);
 
