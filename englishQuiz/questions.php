@@ -155,9 +155,10 @@ $rep4 = $reponses[($i+3)%4];
 
         </script>
     </head>
-    <body onload="progression(temps)" onunload="">
+    <body onload="progression(temps)">
         <noscript class="cadre">Vous devez activer le Javascript pour pouvoir visiter ce site !</noscript>
         <p>Score<br/><?php echo $_SESSION['score']; ?> </p>
+        <p><?php echo $_SESSION['nb_qts_posees']; ?>/20 </p>
         <span style="position:absolute; left:25%; top:2%">
             <div>
                 <div class="align">

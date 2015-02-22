@@ -14,7 +14,7 @@ if ($rep_ok == 'true') {
 	$score += ($tps_imparti - $temps)*$score_par_sec;
 }
 
-$_SESSION['score'] = $score;
+$_SESSION['score'] = round($score);
 
 header("Location: questions.php?id_theme=".$id_theme);
 
