@@ -1,45 +1,53 @@
 <?php
-$spel = $_POST['spel'];
-$geo = $_POST['geo'];
-$litt = $_POST['litt'];
-$gram = $_POST['gram'];
-$hist = $_POST['hist'];
-$rand = $_POST['rand'];
-$verb = $_POST['verb'];
-$voc = $_POST['voc'];
-$pab = $_POST['pab'];
-$scr = $_POST['scr'];
-
-if ($spel != null) {
-	header("Location: questions.php?id_theme=3");
+if (isset($_POST['spel'])) {
+	$spel = $_POST['spel'];
+	if ($spel != null) {
+		header("Location: questions.php?id_theme=3");
+	}
+}elseif (isset($_POST['geo'])) {
+	$geo = $_POST['geo'];
+	if ($geo != null) {
+		header("Location: questions.php?id_theme=2");
+	}
+}elseif (isset($_POST['litt'])) {
+	$litt = $_POST['litt'];
+	if ($litt != null) {
+		header("Location: questions.php?id_theme=7");
+	}
+}elseif (isset($_POST['gram'])) {
+	$gram = $_POST['gram'];
+	if ($gram != null) {
+		header("Location: questions.php?id_theme=4");
+	}
+}elseif (isset($_POST['hist'])) {
+	$hist = $_POST['hist'];
+	if ($hist != null) {
+		header("Location: questions.php?id_theme=1");
+	}
+}elseif (isset($_POST['rand'])) {
+	$rand = $_POST['rand'];
+	if ($rand != null) {
+		header("Location: questions.php?id_theme=99");
+	}
+}elseif (isset($_POST['verb'])) {
+	$verb = $_POST['verb'];
+	if ($verb != null) {
+		header("Location: questions.php?id_theme=10");
+	}
+}elseif (isset($_POST['voc'])) {
+	$voc = $_POST['voc'];
+	if ($voc != null) {
+		header("Location: questions.php?id_theme=6");
+	}
+}elseif (isset($_POST['pab'])) {
+	$pab = $_POST['pab'];
+	if ($pab != null) {
+		header("Location: questions.php?id_theme=8");
+	}
+}elseif (isset($_POST['scr'])) {
+	$scr = $_POST['scr'];
+	if ($scr != null) {
+		header("Location: questions.php?id_theme=9");
+	}
 }
-if ($geo != null) {
-	header("Location: questions.php?id_theme=2");
-}
-if ($litt != null) {
-	header("Location: questions.php?id_theme=7");
-}
-if ($gram != null) {
-	header("Location: questions.php?id_theme=4");
-}
-if ($hist != null) {
-	header("Location: questions.php?id_theme=1");
-}
-if ($rand != null) {
-	header("Location: questions.php?id_theme=99");
-}
-if ($verb != null) {
-	header("Location: questions.php?id_theme=10");
-}
-if ($voc != null) {
-	header("Location: questions.php?id_theme=6");
-}
-if ($pab != null) {
-	header("Location: questions.php?id_theme=8");
-}
-if ($scr != null) {
-	header("Location: questions.php?id_theme=9");
-}
-
-
 ?>

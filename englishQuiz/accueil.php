@@ -5,6 +5,11 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>English Quiz</title>
+        <?php if(isset($_SESSION['prenom'])) { ?>
+        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
+        <?php } else {?>
+        <a style="text-align:right" href="connexion.php">Connexion</a>
+        <?php } ?>
     </head>
     <body>
     <p class="centerWhite70">English Quiz</p>

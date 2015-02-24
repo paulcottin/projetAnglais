@@ -154,6 +154,9 @@ $rep4 = $reponses[($i+3)%4];
             }
 
         </script>
+        <?php if(isset($_SESSION['prenom'])) { ?>
+        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
+        <?php } ?>
     </head>
     <body onload="progression(temps)">
         <noscript class="cadre">Vous devez activer le Javascript pour pouvoir visiter ce site !</noscript>

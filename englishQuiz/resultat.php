@@ -16,6 +16,9 @@ $_SESSION['score'] = 0
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>English Quiz</title>
     </head>
+    <?php if(isset($_SESSION['prenom'])) { ?>
+        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
+    <?php } ?>
     <body>
     <p class="centerWhite70">English Quiz</p>
 	<head>
@@ -47,6 +50,31 @@ $_SESSION['score'] = 0
 					    	<p class="centerWhite50">Excellent !!!</p>
 					    	<?php 
 						}
+
+						if (isset($_SESSION['id'])) {
+								$db;
+							try{
+								$db = new PDO('mysql:host=localhost;dbname=anglais', 'root', '');
+							}catch(Exeception $e){
+								die('Erreur : ' . $e->getMessage());
+							}
+							$sql = "SELECT maxscore FROM users WHERE id=?";
+							$stmt = $db->prepare($sql);
+							$stmt->execute(array($_SESSION['id']));
+
+							$max_score = $stmt->fetch()[0];
+
+							$stmt = null;
+
+							if ($_SESSION['score'] > $max_score) {
+								$sql = "UPDATE users SET maxscore = ? WHERE id = ?";
+								$stmt = $db->prepare($sql);
+								$stmt->execute(array($_SESSION['score'], $_SESSION['id']));
+								?> <p class="text20">Félicitation, nouveau meilleur score !!</p> 
+								<?php  
+							}
+						}
+
 						?>
 
 
