@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+<?php
+
+?>
 <html>
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>English Quiz</title>
-        <?php if(isset($_SESSION['prenom'])) { ?>
+        <?php if(session_is_registered($_SESSION['prenom'])) { ?>
         <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
         <?php } else {?>
         <a style="text-align:right" href="connexion.php">Connexion</a>

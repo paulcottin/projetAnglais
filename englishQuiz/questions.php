@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<?php session_start(); 
+<?php
 $id_theme = $_GET['id_theme'];
 
-if (!isset($_SESSION['qts_posees'])) {
+if (session_register($_SESSION['qts_posees'])) {
   $_SESSION['qts_posees'] = array();
+  session_register($_SESSION['qts_posees']);
 } 
 
-if (!isset($_SESSION['nb_qts_posees'])) {
+if (session_register($_SESSION['nb_qts_posees'])) {
     $_SESSION['nb_qts_posees'] = 0;
+    session_register($_SESSION['nb_qts_posees']);
 }
 
-if (!isset($_SESSION['score'])) {
-    $_SESSION['score'] = 0;
-}
-
-if ($_SESSION['nb_qts_posees'] > 20) {
+if ($_SESSION['nb_qts_posees'] >3) {
     header("Location: resultat.php");
 }
 
