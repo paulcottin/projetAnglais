@@ -1,4 +1,30 @@
 <?php
+session_start();
+
+
+$_SESSION['qts_posees'] = array();
+$_SESSION['nb_qts_posees'] = 0;
+$_SESSION['score'] = 0;
+
+/* Détermination du nombre total de questions (pour le mode random) */
+$_SESSION['nb_total_qts'] = 0;
+
+$db;
+try{
+    $db = new PDO('mysql:host=localhost;dbname=anglais', 'root', '');
+}catch(Exeception $e){
+    die('Erreur : ' . $e->getMessage());
+}
+
+$sql = "SELECT count(id) FROM questions;";
+
+$req = $db->query($sql);
+
+$_SESSION['nb_total_qts'] = $req->fetch()[0];
+
+$req->closeCursor();
+
+
 if (isset($_POST['spel'])) {
 	$spel = $_POST['spel'];
 	if ($spel != null) {

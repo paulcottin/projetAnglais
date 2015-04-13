@@ -1,13 +1,5 @@
-<!DOCTYPE html>
 <?php 
-if (isset($_SESSION['nb_qts_posees'])) {
-	session_unset($_SESSION['nb_qts_posees']);
-}
-if (isset($_SESSION['qts_posees'])) {
-	session_unset($_SESSION['qts_posees']);
-}
-
-echo $_SESSION['score'];
+session_start();
 ?>
 
 <html>

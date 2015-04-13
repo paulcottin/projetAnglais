@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <?php 
-if (!session_is_registered($_SESSION['id'])) {
-    session_start();
-}
-    $_SESSION['score'] = 0;
-    session_register($_SESSION['score']);
+session_start();
+$_SESSION['score'] = 0;
 ?>
 <html>
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>Choose your theme</title>
-        <?php if(session_is_registered($_SESSION['prenom'])) { ?>
+        <?php if($_SESSION['prenom']) { ?>
         <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
         <?php } ?>
     </head>

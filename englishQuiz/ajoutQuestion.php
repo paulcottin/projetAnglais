@@ -44,6 +44,10 @@
         else
             return false;
     }
+
+    function cancel () {
+        document.location.href = "accueil.php";
+    }
     </script>
     <body>
         <p class="centerWhite70">English Quiz</p>
@@ -53,6 +57,7 @@
                 <span style="float:left">
                     <p class="text20">Question :</p>
                     <textarea type="message" name="question" id="questionBox" rows="10" cols="50"></textarea><br/>
+                    <button type="button" class="button" style="text-align:right" onClick="cancel();">Cancel</button>
                     <input type="submit" class="button" style="text-align:right" name="submit" value="Submit"/>
                 </span>
                 <span style="float:center">
@@ -71,7 +76,7 @@
                         </select>
                 </span>
                 <span style="float:right;vertical-alignement:top">
-                        <p class="text20">answers :</p>
+                        <p class="text20">Answers :</p>
                         <input type="text" class="questionButton" id="rep1" name="rep1" placeholder="true answer"/>
                         <input type="text" class="questionButton" id="rep2" name="rep2" placeholder="false answer"/>
                         <br/>

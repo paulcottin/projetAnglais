@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <?php
+session_start();
 $id_theme = $_GET['id_theme'];
 
-if (session_register($_SESSION['qts_posees'])) {
+if (!$_SESSION['qts_posees']) {
   $_SESSION['qts_posees'] = array();
-  session_register($_SESSION['qts_posees']);
 } 
 
-if (session_register($_SESSION['nb_qts_posees'])) {
+if (!$_SESSION['nb_qts_posees']) {
     $_SESSION['nb_qts_posees'] = 0;
-    session_register($_SESSION['nb_qts_posees']);
 }
 
 if ($_SESSION['nb_qts_posees'] >3) {
@@ -23,33 +22,38 @@ try{
     die('Erreur : ' . $e->getMessage());
 }
 
-$sql = "SELECT count(id) FROM questions WHERE id_theme='$id_theme'";
+//Si on est en mode random, nb total de qts, sinon nb de qts ds theme
+if ($id_theme == 99) {
+    $nb_qts = $_SESSION['nb_total_qts'];
+}
+else{
+    $sql = "SELECT count(id) FROM questions WHERE id_theme='$id_theme'";
 
-$req = $db->query($sql);
+    $req = $db->query($sql);
 
-$nb_qts = $req->fetch()[0];
-$nb_qts = $nb_qts + 0;  //Conversion en int
+    $nb_qts = $req->fetch()[0];
+    $nb_qts = $nb_qts + 0;  //Conversion en int
 
-$req->closeCursor();
+    $req->closeCursor();
+}
 
-/*echo "id_theme : ".$id_theme." Nombre de questions : ".$nb_qts."<br/>";*/
-
-//On récupère tous les id de qts de cette catégorie
-$sql = "SELECT id FROM questions WHERE id_theme='$id_theme'";
+//On récupère tous les id de qts de cette catégorie (toutes les qts si random)
+if ($id_theme == 99) {
+    $sql = "SELECT id FROM questions;";
+}
+else {
+    $sql = "SELECT id FROM questions WHERE id_theme='$id_theme'";
+}
 
 $req = $db->query($sql);
 
 
 $qts_theme = array();
-while (($id_qt = $req->fetch()) != null) {
-   // echo "_".$id_qt[0]."<br/>";
-    array_push($qts_theme, $id_qt[0]);
-}
+    while (($id_qt = $req->fetch()) != null) {
+       // echo "_".$id_qt[0]."<br/>";
+        array_push($qts_theme, $id_qt[0]);
+    }
 $req->closeCursor();
-/*echo "count array : ".count($qts_theme)."<br/>";
-for ($i=0; $i < count($qts_theme); $i++) { 
-        echo "_".$qts_theme[$i]."<br/>";
-}*/
 
 //Tant qu'on a pas trouvé une question qui n'a pas déjà été posée on change de question dans cette catégorie
 $i=0;

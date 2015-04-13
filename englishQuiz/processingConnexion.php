@@ -27,9 +27,9 @@ if (password_verify($mdp, $mdp_bd)) {
 	$_SESSION['prenom'] = $data[1];
 	$_SESSION['nom'] = $data[2];
 
-	session_register($_SESSION['id']);
+	/*session_register($_SESSION['id']);
 	session_register($_SESSION['prenom']);
-	session_register($_SESSION['nom']);
+	session_register($_SESSION['nom']);*/
 
 	header("Location: accueil.php");
 }else{

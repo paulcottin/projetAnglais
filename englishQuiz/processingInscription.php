@@ -1,4 +1,5 @@
 <?php
+session_start();
 $prenom = $_POST['prenom'];
 $nom = $_POST['nom'];
 $email = $_POST['email'];

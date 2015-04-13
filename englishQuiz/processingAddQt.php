@@ -1,4 +1,5 @@
 <?php
+session_start();
 $question = $_POST['question'];
 $rep1 = $_POST['rep1'];
 $rep2 = $_POST['rep2'];

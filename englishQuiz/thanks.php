@@ -16,6 +16,7 @@
     </p>
     <p>
     <a href="accueil.php" style="color:white;text-align:center">Go back home</a>
+    <a href="ajoutQuestion.php" style="color:white;text-align:center">Add another one</a>
     </p>
     </body>
 </html>
