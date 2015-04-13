@@ -133,6 +133,7 @@ nav li{
 	text-align: center;
 	margin: 0.5% auto;
 	border-radius:5%;
+	cursor: pointer;
 }
 
 .infoForm{
