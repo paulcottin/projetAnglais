@@ -50,21 +50,33 @@ session_start();
 							}catch(Exeception $e){
 								die('Erreur : ' . $e->getMessage());
 							}
-							$sql = "SELECT maxscore FROM users WHERE id=?";
+							$sql = "SELECT maxscore, nbparties FROM users WHERE id=?;";
 							$stmt = $db->prepare($sql);
 							$stmt->execute(array($_SESSION['id']));
 
-							$max_score = $stmt->fetch()[0];
+							$data = $stmt->fetch();
+							$max_score = $data[0];
+							$nbparties = $data[1];
+							$nbparties = $nbparties + 1;
+							/*echo $data;*/
 
-							$stmt = null;
+							$stmt->closeCursor();
 
+							//Vérification si c'est un nouveau score max
 							if ($_SESSION['score'] > $max_score) {
-								$sql = "UPDATE users SET maxscore = ? WHERE id = ?";
+								$sql = "UPDATE users SET maxscore = ? WHERE id = ?;";
 								$stmt = $db->prepare($sql);
 								$stmt->execute(array($_SESSION['score'], $_SESSION['id']));
+								$stmt = null;
 								?> <p class="text20">Félicitation, nouveau meilleur score !!</p> 
 								<?php  
 							}
+
+							//Incrémentation du nombre de parties jouées
+							$sql = "UPDATE users SET nbparties = ? WHERE id = ?;";
+							$stmt = $db->prepare($sql);
+							$stmt->execute(array($nbparties, $_SESSION['id']));
+							$stmt->closeCursor();
 						}
 
 						?>

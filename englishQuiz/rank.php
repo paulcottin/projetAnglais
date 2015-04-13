@@ -8,13 +8,13 @@ try{
     die('Erreur : ' . $e->getMessage());
 }
 
-$sql = "SELECT prenom, nom, maxscore FROM users ORDER BY maxscore DESC;";
+$sql = "SELECT prenom, nom, maxscore, nbparties FROM users ORDER BY maxscore DESC;";
 
 $req = $db->query($sql);
 
 $users = array();
 while (($data = $req->fetch()) != null) {
-    array_push($users, array($data[0], $data[1], $data[2]));
+    array_push($users, array($data[0], $data[1], $data[2], $data[3]));
 }
 
 $req->closeCursor();
@@ -37,7 +37,7 @@ $req->closeCursor();
     <div>
         <?php for ($i=0; $i < sizeof($users); $i++) { ?>
             <p style="position:relative; left:20%; width:30%">
-                <?php echo $users[$i][0]; ?> <?php echo $users[$i][1];?> - <?php echo $users[$i][2]; ?> points <hr width="70%"/>
+                <?php echo $users[$i][0]; ?> <?php echo $users[$i][1];?> - <?php echo $users[$i][2]; ?> points - Nombre de parties : <?php echo $users[$i][3]; ?> <hr width="70%"/>
             </p>  
         <?php 
         }
