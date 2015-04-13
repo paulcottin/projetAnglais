@@ -5,7 +5,7 @@
         <title>English Quiz</title>
     </head>
     <body>
-    	<form method="post" action="processingConnexion.php" onsubmit="return check()">
+    	<form method="post" action="processingConnexion.php?login=1" onsubmit="return check()">
                     <p class="align40">Connexion</p>
                     <input type="text" name="email" id="email" placeholder="Email"></input><br/>
                     <input type="password" name="mdp" id="mdp" placeholder="Password"></input><br/>

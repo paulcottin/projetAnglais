@@ -101,6 +101,7 @@ nav li{
 	padding-top:5px; 
 	padding-bottom:5px; 
 	text-decoration:none;
+	cursor: pointer;
 }
 
 .commentaire{

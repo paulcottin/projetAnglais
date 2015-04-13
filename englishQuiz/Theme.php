@@ -8,7 +8,7 @@ $_SESSION['score'] = 0;
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>Choose your theme</title>
-        <?php if($_SESSION['prenom']) { ?>
+        <?php if(isset($_SESSION['prenom'])) { ?>
         <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
         <?php } ?>
     </head>

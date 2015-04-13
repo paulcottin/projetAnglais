@@ -1,7 +1,11 @@
 <?php
 session_start();
-$email = $_POST['email'];
-$mdp = $_POST['mdp'];
+if (isset($_POST['email']) && isset($_POST['mdp'])) {
+	$email = $_POST['email'];
+	$mdp = $_POST['mdp'];
+}
+
+$login = $_GET['login'];
 
 $db;
 try{
@@ -10,29 +14,36 @@ try{
 	die('Erreur : ' . $e->getMessage());
 }
 
-$sql = "SELECT mdp FROM users WHERE email=?";
-$stmt = $db->prepare($sql);
-$stmt->execute(array($email));
-
-$mdp_bd = $stmt->fetch()[0];
-
-if (password_verify($mdp, $mdp_bd)) {
-	
-	$sql = "SELECT id, prenom, nom FROM users WHERE email=?";
+//Si c'est une connexion
+if ($login == "1") {
+	$sql = "SELECT mdp FROM users WHERE email=?";
 	$stmt = $db->prepare($sql);
 	$stmt->execute(array($email));
 
-	$data = $stmt->fetch();
-	$_SESSION['id'] = $data[0];
-	$_SESSION['prenom'] = $data[1];
-	$_SESSION['nom'] = $data[2];
+	$mdp_bd = $stmt->fetch()[0];
 
-	/*session_register($_SESSION['id']);
-	session_register($_SESSION['prenom']);
-	session_register($_SESSION['nom']);*/
+	if (password_verify($mdp, $mdp_bd)) {
+		
+		$sql = "SELECT id, prenom, nom FROM users WHERE email=?";
+		$stmt = $db->prepare($sql);
+		$stmt->execute(array($email));
 
+		$data = $stmt->fetch();
+		$_SESSION['id'] = $data[0];
+		$_SESSION['prenom'] = $data[1];
+		$_SESSION['nom'] = $data[2];
+
+		/*session_register($_SESSION['id']);
+		session_register($_SESSION['prenom']);
+		session_register($_SESSION['nom']);*/
+
+		header("Location: accueil.php");
+	}else{
+		header("Location: connexion.php?error=1");
+	}
+}
+else if ($login == "0") {
+	session_unset();
 	header("Location: accueil.php");
-}else{
-	header("Location: connexion.php?error=1");
 }
 ?>
