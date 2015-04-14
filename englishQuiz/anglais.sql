@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 14 Avril 2015 à 16:29
+-- Généré le :  Mar 14 Avril 2015 à 17:05
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `questions` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `question` varchar(250) NOT NULL,
-  `rep1` varchar(100) NOT NULL,
-  `rep2` varchar(100) NOT NULL,
-  `rep3` varchar(100) NOT NULL,
-  `rep4` varchar(100) NOT NULL,
+  `rep1` varchar(50) NOT NULL,
+  `rep2` varchar(50) NOT NULL,
+  `rep3` varchar(50) NOT NULL,
+  `rep4` varchar(50) NOT NULL,
   `id_theme` int(2) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `question` (`question`)
@@ -89,7 +89,7 @@ INSERT INTO `questions` (`id`, `question`, `rep1`, `rep2`, `rep3`, `rep4`, `id_t
 
 CREATE TABLE IF NOT EXISTS `themes` (
   `id` int(2) NOT NULL,
-  `nom_theme` varchar(25) NOT NULL,
+  `nom_theme` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nom_theme` (`nom_theme`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -104,10 +104,35 @@ INSERT INTO `themes` (`id`, `nom_theme`) VALUES
 (4, 'Grammar'),
 (1, 'History'),
 (7, 'Literature'),
-(8, 'Politics and business'),
+(8, 'Politics and busines'),
 (9, 'Series/Cinema/Music'),
 (3, 'Spelling'),
 (6, 'Vocabulary');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `prenom` varchar(50) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `mdp` varchar(10000) NOT NULL,
+  `maxscore` int(10) DEFAULT '0',
+  `nbparties` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`id`, `prenom`, `nom`, `email`, `mdp`, `maxscore`, `nbparties`) VALUES
+(2, 'Paul', 'Cottin', 'paulcottin@gmail.com', '$2y$10$Lu/7UYwwuMPbRxiSUZCrDeWuF1vkfqx4sySRDTq9rLKVV42TcBMYO', 54, 6);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
