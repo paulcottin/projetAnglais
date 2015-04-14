@@ -159,3 +159,14 @@ nav li{
 	margin: 0.5% auto;
 	border-radius:10%;
 }
+
+.tableTitle{
+	padding: 2px 5px 2px 5px;
+	margin: 5px 5px 5px 5px;
+	font-weight: bold;
+}
+
+.tableItem{
+	padding: 2px 5px 2px 5px;
+	text-align: center;
+}

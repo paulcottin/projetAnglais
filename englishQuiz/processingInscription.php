@@ -23,7 +23,7 @@ if ($nb_email != 0) {
 	header("Location: inscription.php?error=1");
 }
 
-$sql = "INSERT INTO users VALUES (null, '$prenom', '$nom', '$email', '$mdp', 0, 0)";
+$sql = "INSERT INTO users VALUES (null, '$prenom', '$nom', '$email', '$mdp', 0, 0, 0)";
 $db->exec($sql);
 
 header("Location: connexion.php");

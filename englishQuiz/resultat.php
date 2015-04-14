@@ -25,7 +25,7 @@ else{
     	<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="style.css">
 			    <p class="centerWhite50"><?php echo($nbRepOk); ?>/20</p>
-			    <p class="align40">Score : <?php echo $nbRepOk; ?></p>
+			    <p class="align40">Score : <?php echo $_SESSION['score']; ?></p>
 			    <?php 	if ($nbRepOk <= 4){
 			    			?> 
 			    			<p class="centerWhite50">Not very good...</p>

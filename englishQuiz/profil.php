@@ -12,7 +12,7 @@ $nbparties = getNbParties();
 $max = getMax();
 $maxTheme = array();
 $nbQtsProp = getNbQtsProp();
-$rang = 0;
+$rang = getClassement();
 
 $themes = array(
 	1 => "History",
@@ -43,17 +43,34 @@ $themes = array(
     </head>
     <body>
     	<p class="centerWhite70">My profile</p>
-    	<p class="text20">
-    		Max score : <?php echo($max); ?><br/>
-    		Number of played party : <?php echo($nbparties); ?> <br/>
-    		Number of played party in mode : <br/>
-    		<?php for ($i=1; $i < count($themes)+1; $i++) { 
-    		?> &nbsp;&nbsp;	<?php echo $themes[$i]; ?> : <?php echo(getNbPartiesByTheme($i)); ?><br/>
-    		<?php
-    		}
-    		?>
-    		Number of questions given : <?php echo($nbQtsProp); ?> <br/>
-    	</p>
+		<div >
+			<p class="text20" style="text-align:center">
+				Ranking : <?php echo($rang); ?> - 
+				Max score : <?php echo($max); ?> - 
+				Number of played party : <?php echo($nbparties); ?> - 
+				Number of questions given : <?php echo($nbQtsProp); ?>
+			</p>
+		</div>    
+    	<div align="center">
+    		<table>
+    			<tr>
+    				<td class="tableTitle">Thema</td>
+    				<td class="tableTitle">Number of parties</td>
+    				<td class="tableTitle">Max score</td>
+    				<td class="tableTitle">Moy score</td>
+    			</tr>
+    			<?php for ($i=1; $i < count($themes)+1; $i++) { 
+    				?>
+    				<tr>
+    					<td><?php echo $themes[$i]; ?></td>
+    					<td class="tableItem"><?php echo(getNbPartiesByTheme($i)); ?></td>
+    					<td class="tableItem"><?php echo(getMaxByTheme($i)); ?></td>
+    					<td class="tableItem"><?php echo getMoyBytheme($i); ?></td>
+    				</tr>
+    			<?php } ?>
+    		</table>
+    	</div>
+    	<a href="accueil.php" class="button" align="center">Return</a>
     </body>
 </html>
 
@@ -83,9 +100,9 @@ function getMax(){
 }
 
 function getNbParties(){
-	$sql = "SELECT count(id) FROM statistics;";
+	$sql = "SELECT count(id) FROM statistics WHERE id_user=?;";
 	$stmt = $GLOBALS['db']->prepare($sql);
-	$stmt->execute();
+	$stmt->execute(array($_SESSION['id']));
 
 	$data = $stmt->fetch();
 
@@ -95,7 +112,7 @@ function getNbParties(){
 }
 
 function getNbQtsProp(){
-	$sql = "SELECT nbQts FROM users WHERE id=?;";
+	$sql = "SELECT nbQts FROM users WHERE id=? ;";
 	$stmt = $GLOBALS['db']->prepare($sql);
 	$stmt->execute(array($_SESSION['id']));
 
@@ -111,15 +128,95 @@ function getNbPartiesByTheme($id){
 		$id = 99;
 	}
 
-	$sql = "SELECT count(id) FROM statistics WHERE theme = ?;";
+	$sql = "SELECT count(id) FROM statistics WHERE theme = ? AND id_user = ?;";
 	$stmt = $GLOBALS['db']->prepare($sql);
-	$stmt->execute(array($id));
+	$stmt->execute(array($id, $_SESSION['id']));
 
 	$data = $stmt->fetch();
 
 	$stmt->closeCursor();
 
 	return $data[0];
+}
+
+function getMaxByTheme($id){
+	if ($id == 10) {
+		$id = 99;
+	}
+	$sql = "SELECT score FROM statistics WHERE id_user=? AND theme = ?;";
+	$stmt = $GLOBALS['db']->prepare($sql);
+	$stmt->execute(array($_SESSION['id'], $id));
+
+	$max = 0;
+	$data;
+	while(($data = $stmt->fetch()) != null){
+		$current = $data[0];
+		if ($current > $max) {
+			$max = $current;
+		}
+	}
+
+	$stmt->closeCursor();
+
+	return $max;
+}
+
+function getMoyBytheme($id){
+	if ($id == 10) {
+		$id = 99;
+	}
+	$sql = "SELECT score FROM statistics WHERE id_user=? AND theme = ?;";
+	$stmt = $GLOBALS['db']->prepare($sql);
+	$stmt->execute(array($_SESSION['id'], $id));
+
+	$somme = 0;
+	$cpt = 0;
+	$data;
+	while(($data = $stmt->fetch()) != null){
+		$somme += $data[0];
+		$cpt++;
+	}
+
+	$stmt->closeCursor();
+
+	if ($cpt == 0) {
+		return 0;
+	}else{
+		return $somme/$cpt;
+	}
+}
+
+function getClassement(){
+	$sql = "SELECT DISTINCT id_user FROM statistics WHERE id_user = ? ORDER BY score DESC;";
+	$stmt = $GLOBALS['db']->prepare($sql);
+	$stmt->execute(array($_SESSION['id']));
+
+	$cpt = 0;
+	$rank = 1;
+	while(($data = $stmt->fetch()) != null){
+		$cpt++;
+		if ($data[0] == $_SESSION['id']) {
+			$rank = $cpt;
+		}
+	}	
+
+	$res = "";
+	switch ($rank) {
+		case 1:
+			$res = "1 st";
+			break;
+		case 2:
+			$res = "2 nd";
+			break;
+		case 3:
+			$res = "3 rd";
+			break;
+		default:
+			$res = $rank." th";
+			break;
+	}
+
+	return $res;
 }
 
 ?>

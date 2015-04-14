@@ -8,14 +8,20 @@ try{
     die('Erreur : ' . $e->getMessage());
 }
 
-$sql = "SELECT prenom, nom, maxscore, nbparties FROM users ORDER BY maxscore DESC;";
+$sql = "SELECT id, prenom, nom FROM users;";
 
 $req = $db->query($sql);
 
 $users = array();
 while (($data = $req->fetch()) != null) {
-    array_push($users, array($data[0], $data[1], $data[2], $data[3]));
+    array_push($users, array($data[1], $data[2], getMax($data[0]), getNbParties($data[0])));
 }
+
+foreach ($users as $key => $row) {
+    $points[$key]  = $row[3];
+}
+
+array_multisort($points, SORT_DESC, $users);
 
 $req->closeCursor();
 ?>
@@ -26,18 +32,17 @@ $req->closeCursor();
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>English Quiz</title>
 </head>
+
+<body>
 <?php if(isset($_SESSION['prenom'])) { ?>
     <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
 <?php } ?>
-<body>
 <p class="centerWhite70">English Quiz</p>
-<head>
-<body>
     <p class="centerWhite50">Ranking</p>
     <div>
         <?php for ($i=0; $i < sizeof($users); $i++) { ?>
             <p style="position:relative; left:20%; width:30%">
-                <?php echo $users[$i][0]; ?> <?php echo $users[$i][1];?> - <?php echo $users[$i][2]; ?> points - Nombre de parties : <?php echo $users[$i][3]; ?> <hr width="70%"/>
+               <?php echo(($i+1).". "); ?> &nbsp;&nbsp;&nbsp; <?php echo $users[$i][0]; ?> <?php echo $users[$i][1];?> - <?php echo $users[$i][2]; ?> points - Nombre de parties : <?php echo $users[$i][3]; ?> <hr width="70%"/>
             </p>  
         <?php 
         }
@@ -45,4 +50,37 @@ $req->closeCursor();
     </div>
     <a href="accueil.php" class="button" style="text-align:right;">Return</a>
 </body>
+</html>
 
+<?php
+function getMax($id){
+    $sql = "SELECT score FROM statistics WHERE id_user=?;";
+    $stmt = $GLOBALS['db']->prepare($sql);
+    $stmt->execute(array($id));
+
+    $max = 0;
+    $data;
+    while(($data = $stmt->fetch()) != null){
+        $current = $data[0];
+        if ($current > $max) {
+            $max = $current;
+        }
+    }
+
+    $stmt->closeCursor();
+
+    return $max;
+}
+
+function getNbParties($id){
+    $sql = "SELECT count(id) FROM statistics WHERE id_user=?;";
+    $stmt = $GLOBALS['db']->prepare($sql);
+    $stmt->execute(array($id));
+
+    $data = $stmt->fetch();
+
+    $stmt->closeCursor();
+
+    return $data[0];
+}
+?>
