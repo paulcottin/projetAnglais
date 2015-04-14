@@ -30,6 +30,13 @@ session_start();
         <div class="align">
             <a href="Theme.php" class="button" name="choix" style="text-decoration:none; margin:5%">Play </a> <br/><br/>
             <a href="rank.php" class="button" name="choix" style="text-decoration:none">Rank </a> <br/><br/>
+            <?php 
+                if (isset($_SESSION['id'])) {
+                    ?>
+                        <a href="profil.php" class="button" name="choix" style="text-decoration:none">My profile </a> <br/><br/>
+                    <?php
+                }
+            ?>
             <a class="button" name="choix" style="text-decoration:none" onclick="redirectSubmit();">Submit a question </a> <br/>
         </div>
     </body>

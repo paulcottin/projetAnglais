@@ -1,17 +1,17 @@
-<!DOCTYPE html>
 <?php
 session_start();
 $id_theme = $_GET['id_theme'];
 
-if (!$_SESSION['qts_posees']) {
+if (!isset($_SESSION['qts_posees'])) {
   $_SESSION['qts_posees'] = array();
 } 
 
-if (!$_SESSION['nb_qts_posees']) {
+if (!isset($_SESSION['nb_qts_posees'])) {
     $_SESSION['nb_qts_posees'] = 0;
 }
 
-if ($_SESSION['nb_qts_posees'] >3) {
+echo "qts_posees : ".$_SESSION['nb_qts_posees'].", nb_qts_theme : ".$_SESSION['nb_qts_theme'].", nb_rep_ok : ".$_SESSION['nb_rep_ok'];
+if ($_SESSION['nb_qts_posees'] >3 || $_SESSION['nb_qts_posees'] >= $_SESSION['nb_qts_theme']-1) {
     header("Location: resultat.php");
 }
 
@@ -63,19 +63,13 @@ do{
     $id_qt = $qts_theme[$id_qt];
     if ($i > 1000*$nb_qts) {
         echo "erreur, pas de questions non posées trouvées";
-        session_unset();    
+        session_unset();  
     }
 }while(in_array($id_qt, $_SESSION['qts_posees']) != FALSE);
-
-//echo "id : ".$id_qt.", Qt choisie : ".$qts_theme[$id_qt];
 
 array_push($_SESSION['qts_posees'], $id_qt);
 $_SESSION['nb_qts_posees']++;
 
-/*echo "nb qts_posees : ".$_SESSION['nb_qts_posees'];
-for ($i=0; $i < count($_SESSION['qts_posees']); $i++) { 
-        echo "_".$_SESSION['qts_posees'][$i]."<br/>";
-}*/
 $sql = "SELECT * FROM questions WHERE id='$id_qt'";
 
 $req = $db->query($sql);
@@ -102,7 +96,7 @@ $rep4 = $reponses[($i+3)%4];
             <script type="text/javascript">
 
             var i=0;
-            var temps = 3; //50
+            var temps = 50; //50
             var aRepondu = 0;
             var chaine = '<?php echo $reponses[0]; ?>';
             var resultat = 0;
