@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 14 Avril 2015 à 14:32
+-- Généré le :  Mar 14 Avril 2015 à 16:29
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -29,14 +29,14 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `questions` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `question` varchar(250) NOT NULL,
-  `rep1` varchar(50) NOT NULL,
-  `rep2` varchar(50) NOT NULL,
-  `rep3` varchar(50) NOT NULL,
-  `rep4` varchar(50) NOT NULL,
+  `rep1` varchar(100) NOT NULL,
+  `rep2` varchar(100) NOT NULL,
+  `rep3` varchar(100) NOT NULL,
+  `rep4` varchar(100) NOT NULL,
   `id_theme` int(2) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `question` (`question`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
 --
 -- Contenu de la table `questions`
@@ -68,8 +68,18 @@ INSERT INTO `questions` (`id`, `question`, `rep1`, `rep2`, `rep3`, `rep4`, `id_t
 (23, 'Who wrote Jane Eyre?', 'Charlotte Brontë', 'Emily Brontë', 'Jane Austen', 'Wiliam Shakespeare', 7),
 (24, 'Who wrote Othello?', 'William Shakespeare', 'John Keats', 'William Wordsworth', 'Lord Byron', 7),
 (25, 'Who wrote Pride and Prejudice?', 'Jane Austen', 'Mary Shelley', 'Emily Brontë', 'John Keats', 7),
-(26, 'I found __________ hat.', 'your', 'you''re', 'you', 'youre', 3),
-(27, 'She is __________ girlfriend.', 'his', 'is', '', '', 0);
+(26, 'I found _____ hat.', 'your', 'you''re', 'you', 'youre', 3),
+(27, 'She is _____ girlfriend.', 'his', 'is', 'he''s', 'he is', 3),
+(28, 'Register early if you would like to attend next Tuesday’s _____ on project management.', 'seminar', 'reason', 'policy', 'scene', 6),
+(29, 'The organizers of the trip reminded participants to _____ at the steps of the city hall at 2:00 P.M.', 'meet', 'combine', 'see', 'go', 6),
+(30, 'Paul Brown resigned last Monday from his position as _____ executive of the company.', 'chief', 'fine', 'large', 'front', 6),
+(31, 'The financial audit of Soft Peach Software _____ completed on Wednesday by a certified accounting firm.\r\n', 'was', 'were', 'to be', 'having been', 5),
+(32, 'Maria Vásquez has a wide range of experience, _____ worked in technical, production, and marketing positions.', 'having', 'has', 'having had', 'had', 5),
+(33, 'Tickets will not be redeemable for cash or credit at any time, _____ will they be replaced if lost or stolen.', 'nor', 'but', 'only', 'though', 4),
+(34, 'The recent worldwide increase in oil prices has led to a _____ demand for electric vehicles.', 'greater', 'greatest', 'greatness', 'greatly', 4),
+(35, 'Mr Inlaw comes from the NDP, _____ his supporters.', 'do', 'come', 'are', 'well', 4),
+(36, 'He would starve to death rather than _____ a loan.', 'ask', 'to ask', 'have asked', 'to have asked', 5),
+(37, 'Have you ever seen a real _____ scorpion ?', 'live', 'life', 'lives', 'Life', 3);
 
 -- --------------------------------------------------------
 
@@ -79,7 +89,7 @@ INSERT INTO `questions` (`id`, `question`, `rep1`, `rep2`, `rep3`, `rep4`, `id_t
 
 CREATE TABLE IF NOT EXISTS `themes` (
   `id` int(2) NOT NULL,
-  `nom_theme` varchar(20) NOT NULL,
+  `nom_theme` varchar(25) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nom_theme` (`nom_theme`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -94,7 +104,7 @@ INSERT INTO `themes` (`id`, `nom_theme`) VALUES
 (4, 'Grammar'),
 (1, 'History'),
 (7, 'Literature'),
-(8, 'Politics and busines'),
+(8, 'Politics and business'),
 (9, 'Series/Cinema/Music'),
 (3, 'Spelling'),
 (6, 'Vocabulary');
