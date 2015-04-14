@@ -10,7 +10,6 @@ if (!isset($_SESSION['nb_qts_posees'])) {
     $_SESSION['nb_qts_posees'] = 0;
 }
 
-echo "qts_posees : ".$_SESSION['nb_qts_posees'].", nb_qts_theme : ".$_SESSION['nb_qts_theme'].", nb_rep_ok : ".$_SESSION['nb_rep_ok'];
 if ($_SESSION['nb_qts_posees'] >3 || $_SESSION['nb_qts_posees'] >= $_SESSION['nb_qts_theme']-1) {
     header("Location: resultat.php");
 }
