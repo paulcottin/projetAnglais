@@ -53,38 +53,26 @@ else{
 						}
 
 						if (isset($_SESSION['id'])) {
-								$db;
+							//Vérification si c'est un nouveau score max
+							if ($_SESSION['score'] > getMaxScore()) {
+								?> 
+								<p class="text20">Félicitation, nouveau meilleur score !!</p> 
+								<?php  
+							}
+
+							//Incrémentation du nombre de parties jouées
+							$db;
 							try{
 								$db = new PDO('mysql:host=localhost;dbname=anglais', 'root', '');
 							}catch(Exeception $e){
 								die('Erreur : ' . $e->getMessage());
 							}
-							$sql = "SELECT maxscore, nbparties FROM users WHERE id=?;";
+							$id = $_SESSION['id'];
+							$score = $_SESSION['score'];
+							$id_theme = $_SESSION['id_theme'];
+							$sql = "INSERT INTO statistics VALUES (null, ?, ?, ?);";
 							$stmt = $db->prepare($sql);
-							$stmt->execute(array($_SESSION['id']));
-
-							$data = $stmt->fetch();
-							$max_score = $data[0];
-							$nbparties = $data[1];
-							$nbparties = $nbparties + 1;
-							/*echo $data;*/
-
-							$stmt->closeCursor();
-
-							//Vérification si c'est un nouveau score max
-							if ($nbRepOk > $max_score) {
-								$sql = "UPDATE users SET maxscore = ? WHERE id = ?;";
-								$stmt = $db->prepare($sql);
-								$stmt->execute(array($nbRepOk, $_SESSION['id']));
-								$stmt = null;
-								?> <p class="text20">Félicitation, nouveau meilleur score !!</p> 
-								<?php  
-							}
-
-							//Incrémentation du nombre de parties jouées
-							$sql = "UPDATE users SET nbparties = ? WHERE id = ?;";
-							$stmt = $db->prepare($sql);
-							$stmt->execute(array($nbparties, $_SESSION['id']));
+							$stmt->execute(array($id, $score, $id_theme));
 							$stmt->closeCursor();
 						}
 
@@ -96,3 +84,29 @@ else{
        	</div>
     </body>
 </html>
+
+<?php
+
+function getMaxScore(){
+	$db;
+	try{
+		$db = new PDO('mysql:host=localhost;dbname=anglais', 'root', '');
+	}catch(Exeception $e){
+		die('Erreur : ' . $e->getMessage());
+	}
+	$sql = "SELECT score FROM statistics WHERE id_user=?;";
+	$stmt = $db->prepare($sql);
+	$stmt->execute(array($_SESSION['id']));
+
+	$max = 0;
+	$data;
+	while(($data = $stmt->fetch()) != null){
+		$current = $data[0];
+		if ($current > $max) {
+			$max = $current;
+		}
+	}
+
+	return $max;
+}
+?>

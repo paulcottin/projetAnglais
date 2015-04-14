@@ -1,6 +1,7 @@
 <?php
 session_start();
 $id_theme = $_GET['id_theme'];
+$_SESSION['id_theme'] = $id_theme;
 
 if (!isset($_SESSION['qts_posees'])) {
   $_SESSION['qts_posees'] = array();
