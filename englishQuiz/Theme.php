@@ -1,7 +1,7 @@
-<!DOCTYPE html>
 <?php 
 session_start();
 $_SESSION['score'] = 0;
+$_SESSION['nb_rep_ok'] = 0;
 ?>
 <html>
     <head>

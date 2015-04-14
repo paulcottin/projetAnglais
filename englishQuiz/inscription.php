@@ -17,16 +17,21 @@
         var prenom = document.getElementById('prenom');
         var nom = document.getElementById('nom');
         var email = document.getElementById('email');
+        var mdp = document.getElementById('mdp');
 
         if (prenom.value == "") {
             ok = 0;
-            alert('Thanks to fill the first name field')
+            alert('Thanks to fill the first name field');
         }
         if (nom.value == "") {ok = 0;
-            alert('Thanks to fill the last name field')
+            alert('Thanks to fill the last name field');
         }
         if (email.value == "" && !validateEmail(email.value)) {ok = 0;
-            alert('Thanks to fill the email field')
+            alert('Thanks to fill the email field');
+        }
+        if (mdp.value == "") {
+            ok = 0;
+            alert('Thanks to fill the password field');
         }
         if (ok == 1)
             return true;

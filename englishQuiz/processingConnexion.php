@@ -42,6 +42,7 @@ if ($login == "1") {
 		header("Location: connexion.php?error=1");
 	}
 }
+//Si  c'est une déconnexion
 else if ($login == "0") {
 	session_unset();
 	header("Location: accueil.php");

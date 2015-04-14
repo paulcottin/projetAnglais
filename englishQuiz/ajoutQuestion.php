@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php session_start(); ?>
 <html>
     <head>
@@ -77,12 +76,13 @@
                 </span>
                 <span style="float:right;vertical-alignement:top">
                         <p class="text20">Answers :</p>
-                        <input type="text" class="questionButton" id="rep1" name="rep1" placeholder="true answer"/>
-                        <input type="text" class="questionButton" id="rep2" name="rep2" placeholder="false answer"/>
+                        <textarea class="questionButton" id="rep1" name="rep1" placeholder="true answer">true answer
+                        </textarea>
+                        <input type="text" class="questionButton" id="rep2" name="rep2" placeholder="false answer" maxlength="20"/>
                         <br/>
                         <div>
-                            <input type="text" class="questionButton" id="rep3" name="rep3" placeholder="false answer"/>
-                            <input type="text" class="questionButton" id="rep4" name="rep4" placeholder="false answer"/>
+                            <input type="text" class="questionButton" id="rep3" name="rep3" placeholder="false answer" maxlength="20"/>
+                            <input type="text" class="questionButton" id="rep4" name="rep4" placeholder="false answer" maxlength="20"/>
                         </div>
                 </span>
             </form>

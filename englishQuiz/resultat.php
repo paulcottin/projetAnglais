@@ -1,5 +1,13 @@
 <?php 
 session_start();
+
+$nbRepOk = 0;
+if ($_SESSION['nb_qts_posees'] >= $_SESSION['nb_qts_theme']-1) {
+	$nbRepOk = 20*$_SESSION['nb_rep_ok']/($_SESSION['nb_qts_theme']-1);
+}
+else{
+	$nbRepOk = $_SESSION['nb_rep_ok'];
+}
 ?>
 
 <html>
@@ -16,28 +24,29 @@ session_start();
 	<head>
     	<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="style.css">
-			    <p class="centerWhite50"><?php echo $_SESSION['score']; ?>/20</p>
-			    <?php 	if ($_SESSION['score'] <= 4){
+			    <p class="centerWhite50"><?php echo($nbRepOk); ?>/20</p>
+			    <p class="align40">Score : <?php echo $nbRepOk; ?></p>
+			    <?php 	if ($nbRepOk <= 4){
 			    			?> 
 			    			<p class="centerWhite50">Not very good...</p>
 			    			<?php 
 						}
-						if ($_SESSION['score'] > 4 && $_SESSION['score'] <= 8){
+						if ($nbRepOk > 4 && $nbRepOk <= 8){
 							?> 
 					    	<p class="centerWhite50">You still have to progress</p>
 							<?php 
 						}
-						if ($_SESSION['score'] > 8 && $_SESSION['score'] <= 12){
+						if ($nbRepOk > 8 && $nbRepOk <= 12){
 							?> 
 					    	<p class="centerWhite50">Not so bad</p>
 					    	<?php 
 						}
-						if ($_SESSION['score'] > 12 && $_SESSION['score'] <= 16){
+						if ($nbRepOk > 12 && $nbRepOk <= 16){
 					    	?> 
 					    	<p class="centerWhite50">Good !</p>
 					    	<?php 
 						}
-						if ($_SESSION['score'] > 16 && $_SESSION['score'] < 20){
+						if ($nbRepOk > 16 && $nbRepOk <= 20){
 					    	?> 
 					    	<p class="centerWhite50">Excellent !!!</p>
 					    	<?php 
@@ -63,10 +72,10 @@ session_start();
 							$stmt->closeCursor();
 
 							//Vérification si c'est un nouveau score max
-							if ($_SESSION['score'] > $max_score) {
+							if ($nbRepOk > $max_score) {
 								$sql = "UPDATE users SET maxscore = ? WHERE id = ?;";
 								$stmt = $db->prepare($sql);
-								$stmt->execute(array($_SESSION['score'], $_SESSION['id']));
+								$stmt->execute(array($nbRepOk, $_SESSION['id']));
 								$stmt = null;
 								?> <p class="text20">Félicitation, nouveau meilleur score !!</p> 
 								<?php  
