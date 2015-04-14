@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Ven 20 Février 2015 à 16:19
--- Version du serveur: 5.6.12-log
--- Version de PHP: 5.4.12
+-- Client :  127.0.0.1
+-- Généré le :  Mar 14 Avril 2015 à 14:32
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,10 +17,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `anglais`
+-- Base de données :  `anglais`
 --
-CREATE DATABASE IF NOT EXISTS `anglais` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `anglais`;
 
 -- --------------------------------------------------------
 
@@ -38,18 +36,40 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `id_theme` int(2) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `question` (`question`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Contenu de la table `questions`
 --
 
 INSERT INTO `questions` (`id`, `question`, `rep1`, `rep2`, `rep3`, `rep4`, `id_theme`) VALUES
-(1, 'Question1', 'rep 1', 'rep 2', 'rep 3', 'rep 4', 1),
-(2, 'Question 2', 'rep 1', 'rep 2', 'rep 3', 'rep 4', 1),
-(3, 'first question', '1rst', '2nd', '3rd', '4th', 0),
-(5, 'une question', 'true', 'false1', 'false2', 'false3', 0),
-(10, 'sdrth', 'drt', 'srt', 'st', 'srth', 3);
+(1, 'When has tea become the favourite drink of the English?', '1750', '1610', '1560', '1830', 1),
+(2, 'When was the London''s Underground inaugurated ?', '1863', '1883', '1893', '1903', 1),
+(3, 'Which is the oldest university of United Kingdom?', 'Oxford', 'Cambridge', 'Queen''s University', 'St Andrew''s University', 1),
+(4, 'Who was the last English king to be killed in battle?', 'Richard III', 'William II', 'Henry IV', 'George II', 1),
+(5, 'Where does the name "Big Ben" come from?', 'Sir Benjamin Hall, MP', 'Benjamin Franklin', 'Benjamin Caunt, a bare-knuckle boxer', 'Benjamin Disraeli, british Prime Minister', 1),
+(6, 'Which of the following English kings never married?', 'William II', 'Henry II', 'George II', 'Edward II', 1),
+(7, 'Who is the longest reigning monarch in Britain?', 'Queen Victoria', 'Henry V', 'Queen Elizabeth I', 'George II', 1),
+(8, 'Which disease killed Robert the Bruce?', 'Leprosy', 'Syphillis', 'Bubonic Plague', 'Typhoid', 1),
+(9, 'How many children did Queen Victoria have?', '8', '7', '6', '9', 1),
+(10, 'sdrth', '"Dieu et mon droit" and "Honi soit qui mal y pense', '"God and my right" and "Evil be to who evil thinks', '"In God we trust"', '"God save the Queen"', 1),
+(11, 'In which battle was Horatio Nelson fatally wounded?', 'Battle of Trafalgar', 'Battle of Waterloo', 'Battle of Standford bridge', 'Battle of the Boyne', 1),
+(12, 'In which war was the Victoria Cross first awarded?', 'The Crimean War', 'The Gulf War', 'World War II', 'World War I', 1),
+(13, 'In which British city was Guy Fawkes born and Dick Turpin killed?', 'York', 'London', 'Leeds', 'Birmingham', 1),
+(14, 'What is the earliest recorded Roman town in England', 'Colchester', 'London', 'York', 'Chelmsford', 1),
+(15, 'How many wives did Henry VIII divorce?', '2', '4', '3', '1', 1),
+(16, 'Which is officially Britain''s second city?', 'None of the above- there isn''t one', 'Birmingham', 'Manchester', 'Edinburgh', 2),
+(17, 'Which is the UK''s largest lake?', 'Lough Neagh in Northern Ireland', 'Lake Windermere in England', 'Loch Lomond in Scotland', 'Loch Ness in Scotland', 2),
+(18, 'How far apart are Edinburgh and Glasgow?', '32 miles', '43 miles', '50 miles ', '62 miles ', 2),
+(19, 'Douglas is the capital of the Isle of Man. But which nation is it nearest?', 'Scotland', 'England', 'Northern Ireland ', 'Wales', 2),
+(20, 'What percentage of people in the UK live in a town or city?', '80%', '50%', '99%', '90%', 2),
+(21, 'Who wrote Wutherthing Heigths?', 'Emily Brontë', 'Charlotte Brontë', 'Jane Austen', 'William Shakespeare', 7),
+(22, 'During which century does William Shakespeare live?', 'XVIth century', 'XVth century', 'XVIIth century', 'XVIIIth century', 7),
+(23, 'Who wrote Jane Eyre?', 'Charlotte Brontë', 'Emily Brontë', 'Jane Austen', 'Wiliam Shakespeare', 7),
+(24, 'Who wrote Othello?', 'William Shakespeare', 'John Keats', 'William Wordsworth', 'Lord Byron', 7),
+(25, 'Who wrote Pride and Prejudice?', 'Jane Austen', 'Mary Shelley', 'Emily Brontë', 'John Keats', 7),
+(26, 'I found __________ hat.', 'your', 'you''re', 'you', 'youre', 3),
+(27, 'She is __________ girlfriend.', 'his', 'is', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -71,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `themes` (
 INSERT INTO `themes` (`id`, `nom_theme`) VALUES
 (5, 'Conjugation'),
 (2, 'Geography'),
-(4, 'Grammary'),
+(4, 'Grammar'),
 (1, 'History'),
 (7, 'Literature'),
 (8, 'Politics and busines'),
