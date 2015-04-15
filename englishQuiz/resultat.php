@@ -17,38 +17,44 @@ else{
         <title>English Quiz</title>
     </head>
     <?php if(isset($_SESSION['prenom'])) { ?>
-        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
-    <?php } ?>
+        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?> <br/>
+        <a href="processingConnexion.php?login=0" style="color:white">Déconnexion</a>
+        </p>
+        <?php } else {?>
+        <p style="text-align:right;">
+            <a style="color:white;" href="connexion.php">Connexion</a>
+        </p>
+        <?php } ?>
     <body>
     <p class="centerWhite70">English Quiz</p>
 	<head>
     	<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="style.css">
-			    <p class="centerWhite50"><?php echo($nbRepOk); ?>/20</p>
+			    <p class="centerWhite40"><?php echo($nbRepOk); ?>/20</p>
 			    <p class="align40">Score : <?php echo $_SESSION['score']; ?></p>
 			    <?php 	if ($nbRepOk <= 4){
 			    			?> 
-			    			<p class="centerWhite50">Not very good...</p>
+			    			<p class="centerWhite40">Not very good...</p>
 			    			<?php 
 						}
 						if ($nbRepOk > 4 && $nbRepOk <= 8){
 							?> 
-					    	<p class="centerWhite50">You still have to progress</p>
+					    	<p class="centerWhite40">You still have to progress</p>
 							<?php 
 						}
 						if ($nbRepOk > 8 && $nbRepOk <= 12){
 							?> 
-					    	<p class="centerWhite50">Not so bad</p>
+					    	<p class="centerWhite40">Not so bad</p>
 					    	<?php 
 						}
 						if ($nbRepOk > 12 && $nbRepOk <= 16){
 					    	?> 
-					    	<p class="centerWhite50">Good !</p>
+					    	<p class="centerWhite40">Good !</p>
 					    	<?php 
 						}
 						if ($nbRepOk > 16 && $nbRepOk <= 20){
 					    	?> 
-					    	<p class="centerWhite50">Excellent !!!</p>
+					    	<p class="centerWhite40">Excellent !!!</p>
 					    	<?php 
 						}
 
@@ -70,9 +76,9 @@ else{
 							$id = $_SESSION['id'];
 							$score = $_SESSION['score'];
 							$id_theme = $_SESSION['id_theme'];
-							$sql = "INSERT INTO statistics VALUES (null, ?, ?, ?);";
+							$sql = "INSERT INTO statistics VALUES (null, ?, ?, ?, ?);";
 							$stmt = $db->prepare($sql);
-							$stmt->execute(array($id, $score, $id_theme));
+							$stmt->execute(array($id, $score, $id_theme, $nbRepOk));
 							$stmt->closeCursor();
 						}
 

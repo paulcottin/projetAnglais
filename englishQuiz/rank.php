@@ -35,20 +35,28 @@ $req->closeCursor();
 
 <body>
 <?php if(isset($_SESSION['prenom'])) { ?>
-    <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
-<?php } ?>
+        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?> <br/>
+        <a href="processingConnexion.php?login=0" style="color:white">Déconnexion</a>
+        </p>
+        <?php } else {?>
+        <p style="text-align:right;">
+            <a style="color:white;" href="connexion.php">Connexion</a>
+        </p>
+        <?php } ?>
 <p class="centerWhite70">English Quiz</p>
-    <p class="centerWhite50">Ranking</p>
+    <p class="centerWhite40">Ranking</p>
     <div>
         <?php for ($i=0; $i < sizeof($users); $i++) { ?>
-            <p style="position:relative; left:20%; width:30%">
+            <p style="position:relative; left:20%; width:70%">
                <?php echo(($i+1).". "); ?> &nbsp;&nbsp;&nbsp; <?php echo $users[$i][0]; ?> <?php echo $users[$i][1];?> - <?php echo $users[$i][2]; ?> points - Nombre de parties : <?php echo $users[$i][3]; ?> <hr width="70%"/>
             </p>  
         <?php 
         }
         ?>
     </div>
-    <a href="accueil.php" class="button" style="text-align:right;">Return</a>
+    <p style="text-align:center">
+        <a href="accueil.php" class="button">Return</a>
+    </p>
 </body>
 </html>
 

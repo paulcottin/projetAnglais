@@ -9,7 +9,13 @@ $_SESSION['nb_rep_ok'] = 0;
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>Choose your theme</title>
         <?php if(isset($_SESSION['prenom'])) { ?>
-        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
+        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?> <br/>
+        <a href="processingConnexion.php?login=0" style="color:white">Déconnexion</a>
+        </p>
+        <?php } else {?>
+        <p style="text-align:right;">
+            <a style="color:white;" href="connexion.php">Connexion</a>
+        </p>
         <?php } ?>
     </head>
     <body>

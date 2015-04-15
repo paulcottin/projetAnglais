@@ -7,9 +7,11 @@
     <body>
     	<form method="post" action="processingConnexion.php?login=1" onsubmit="return check()">
                     <p class="align40">Connexion</p>
-                    <input type="text" name="email" id="email" placeholder="Email"></input><br/>
-                    <input type="password" name="mdp" id="mdp" placeholder="Password"></input><br/>
-                    <input type="submit" class="button" style="text-align:right" name="submit" value="Connect"/>
+                    <div align="center">
+                        <input type="text" name="email" id="email" class="connectForm" placeholder="Email"></input><br/>
+                        <input type="password" name="mdp" id="mdp" class="connectForm" placeholder="Password"></input><br/>
+                        <input type="submit" class="button" style="text-align:right" name="submit" value="Connect"/>
+                    </div>
             </form>
             <?php if (isset($_GET['error'])) { 
             			if ($_GET['error'] == 1) { ?>

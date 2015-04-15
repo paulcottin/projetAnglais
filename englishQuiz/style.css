@@ -26,9 +26,9 @@ nav li{
 	margin-bottom: 40px;	
 }
 
-.centerWhite50{
+.centerWhite40{
 	text-align: center;
-	font-size: 50px;
+	font-size: 40px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10px;
@@ -36,8 +36,8 @@ nav li{
 }
 
 #cercle{
-	background:#005377;
-	border-radius:50%;
+	background:#004377;
+	border-radius:40%;
 	width:160px;
 	height:160px; 
 	margin-left: auto;
@@ -46,9 +46,9 @@ nav li{
 	vertical-align: middle;
 }
 
-.align35{
+.align34{
 	text-align: center;
-	font-size: 35px;
+	font-size: 34px;
 }
 
 .align40{
@@ -67,18 +67,18 @@ nav li{
 .cadre{
 	margin-top: 30px;
 	margin-left: auto;
-	margin-right: 50px;
+	margin-right: 40px;
 	text-align:center;
 	height: 400px;
 	width: 20px;
 	border: solid 2px;
-	border-color: #005377;
+	border-color: #004377;
 }
 
 #barre{
 	height: 0px;
 	width: 20px;
-	background-color: #005377;
+	background-color: #004377;
 }
 
 .texte{
@@ -90,16 +90,16 @@ nav li{
 .button{
 	color: white;
 	font-size: 30px;	
-	border: 1px solid #656565;
-	background:#005377;
+	border: 1px solid #646464;
+	background:#004377;
 	text-align: center;
 	margin: 0 auto;
 	margin: 10px;
 	border-radius: 10px;
 	padding-right:7px; 
 	padding-left:7px; 
-	padding-top:5px; 
-	padding-bottom:5px; 
+	padding-top:4px; 
+	padding-bottom:4px; 
 	text-decoration:none;
 	cursor: pointer;
 }
@@ -127,13 +127,19 @@ nav li{
 	color: white;
 	font-size: 30px;
 	width: 300px;
-	height: 150px;
-	border: 1px solid #656565;
-	background:#005377;
+	height: 140px;
+	border: 1px solid #646464;
+	background:#004377;
 	text-align: center;
-	margin: 0.5% auto;
-	border-radius:5%;
+	margin: 0.4% auto;
+	border-radius:4%;
 	cursor: pointer;
+	white-space: pre-wrap;       /* css-3 */
+	white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+	white-space: -pre-wrap;      /* Opera 4-6 */
+	white-space: -o-pre-wrap;    /* Opera 7 */
+	word-wrap: break-word;       /* Internet Explorer 5.5+ */ 
+	cursor:pointer;
 }
 
 .infoForm{
@@ -153,20 +159,28 @@ nav li{
 	font-size: 20px;
 	width: 600px;
 	height: 300px;
-	border: 1px solid #656565;
-	background:#005377;
+	border: 1px solid #646464;
+	background:#004377;
 	text-align: center;
-	margin: 0.5% auto;
+	margin: 0.4% auto;
 	border-radius:10%;
 }
 
 .tableTitle{
-	padding: 2px 5px 2px 5px;
-	margin: 5px 5px 5px 5px;
+	padding: 4px 10px 4px 10px;
+	margin: 4px 10px 4px 10px;
 	font-weight: bold;
+	text-align: center;
 }
 
 .tableItem{
-	padding: 2px 5px 2px 5px;
+	padding: 4px 10px 4px 10px;
+	margin: 4px 10px 4px 10px;
 	text-align: center;
+	border-bottom: solid 1px;
+}
+
+.connectForm{
+	padding: 10px 10px 10px 10px;
+	margin: 10px 10px 10px 10px;
 }

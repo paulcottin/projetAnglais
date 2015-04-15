@@ -150,13 +150,19 @@ $rep4 = $reponses[($i+3)%4];
             }
 
         </script>
-        <?php if(isset($_SESSION['prenom'])) { ?>
-        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
+       <?php if(isset($_SESSION['prenom'])) { ?>
+        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?> <br/>
+        <a href="processingConnexion.php?login=0" style="color:white">Déconnexion</a>
+        </p>
+        <?php } else {?>
+        <p style="text-align:right;">
+            <a style="color:white;" href="connexion.php">Connexion</a>
+        </p>
         <?php } ?>
     </head>
     <body onload="progression(temps)">
         <noscript class="cadre">Vous devez activer le Javascript pour pouvoir visiter ce site !</noscript>
-        <p>Score<br/><?php echo $_SESSION['score']; ?> </p>
+        <p>Score<br/><?php echo $_SESSION['score']; ?> / 40 000 </p>
         <p><?php echo $_SESSION['nb_qts_posees']; ?>/20 </p>
         <span style="position:absolute; left:25%; top:2%">
             <div>

@@ -5,7 +5,13 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>English Quiz</title>
         <?php if(isset($_SESSION['prenom'])) { ?>
-        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
+        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?> <br/>
+        <a href="processingConnexion.php?login=0" style="color:white">Déconnexion</a>
+        </p>
+        <?php } else {?>
+        <p style="text-align:right;">
+            <a style="color:white;" href="connexion.php">Connexion</a>
+        </p>
         <?php } ?>
     </head>
     <script type="text/javascript">
@@ -76,13 +82,12 @@
                 </span>
                 <span style="float:right;vertical-alignement:top">
                         <p class="text20">Answers :</p>
-                        <textarea class="questionButton" id="rep1" name="rep1" placeholder="true answer">true answer
-                        </textarea>
-                        <input type="text" class="questionButton" id="rep2" name="rep2" placeholder="false answer" maxlength="20"/>
+                        <textarea class="questionButton" id="rep1" name="rep1" placeholder="true answer" maxlength="50"></textarea>
+                        <textarea class="questionButton" id="rep2" name="rep2" placeholder="false answer" maxlength="50"></textarea>
                         <br/>
                         <div>
-                            <input type="text" class="questionButton" id="rep3" name="rep3" placeholder="false answer" maxlength="20"/>
-                            <input type="text" class="questionButton" id="rep4" name="rep4" placeholder="false answer" maxlength="20"/>
+                            <textarea class="questionButton" id="rep3" name="rep3" placeholder="false answer" maxlength="50"></textarea>
+                            <textarea class="questionButton" id="rep4" name="rep4" placeholder="false answer" maxlength="50"></textarea>
                         </div>
                 </span>
             </form>

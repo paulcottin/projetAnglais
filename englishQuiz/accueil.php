@@ -7,10 +7,13 @@ session_start();
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>English Quiz</title>
         <?php if(isset($_SESSION['prenom'])) { ?>
-        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
-        <a href="processingConnexion.php?login=0" style="text-align:right">Déconnexion</a>
+        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?> <br/>
+        <a href="processingConnexion.php?login=0" style="color:white">Déconnexion</a>
+        </p>
         <?php } else {?>
-        <a style="text-align:right" href="connexion.php">Connexion</a>
+        <p style="text-align:right;">
+            <a style="color:white;" href="connexion.php">Connexion</a>
+        </p>
         <?php } ?>
     </head>
     <script type="text/javascript">

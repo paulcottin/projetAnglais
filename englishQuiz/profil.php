@@ -34,11 +34,14 @@ $themes = array(
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>English Quiz</title>
-        <?php if(isset($_SESSION['prenom'])) { ?>
-        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?></p>
-        <a href="processingConnexion.php?login=0" style="text-align:right">Déconnexion</a>
+       <?php if(isset($_SESSION['prenom'])) { ?>
+        <p style="text-align:right"><?php echo $_SESSION['prenom']." ".$_SESSION['nom']; ?> <br/>
+        <a href="processingConnexion.php?login=0" style="color:white">Déconnexion</a>
+        </p>
         <?php } else {?>
-        <a style="text-align:right" href="connexion.php">Connexion</a>
+        <p style="text-align:right;">
+            <a style="color:white;" href="connexion.php">Connexion</a>
+        </p>
         <?php } ?>
     </head>
     <body>
@@ -52,17 +55,17 @@ $themes = array(
 			</p>
 		</div>    
     	<div align="center">
-    		<table>
+    		<table style="border-collapse: collapse;">
     			<tr>
     				<td class="tableTitle">Thema</td>
     				<td class="tableTitle">Number of parties</td>
-    				<td class="tableTitle">Max score</td>
-    				<td class="tableTitle">Moy score</td>
+    				<td class="tableTitle">Max note <br/> (/20)</td>
+    				<td class="tableTitle">Moy note <br/> (/20)</td>
     			</tr>
     			<?php for ($i=1; $i < count($themes)+1; $i++) { 
     				?>
     				<tr>
-    					<td><?php echo $themes[$i]; ?></td>
+    					<td style="border-bottom: solid 1px;"><?php echo $themes[$i]; ?></td>
     					<td class="tableItem"><?php echo(getNbPartiesByTheme($i)); ?></td>
     					<td class="tableItem"><?php echo(getMaxByTheme($i)); ?></td>
     					<td class="tableItem"><?php echo getMoyBytheme($i); ?></td>
@@ -143,7 +146,7 @@ function getMaxByTheme($id){
 	if ($id == 10) {
 		$id = 99;
 	}
-	$sql = "SELECT score FROM statistics WHERE id_user=? AND theme = ?;";
+	$sql = "SELECT note FROM statistics WHERE id_user=? AND theme = ?;";
 	$stmt = $GLOBALS['db']->prepare($sql);
 	$stmt->execute(array($_SESSION['id'], $id));
 
@@ -165,7 +168,7 @@ function getMoyBytheme($id){
 	if ($id == 10) {
 		$id = 99;
 	}
-	$sql = "SELECT score FROM statistics WHERE id_user=? AND theme = ?;";
+	$sql = "SELECT note FROM statistics WHERE id_user=? AND theme = ?;";
 	$stmt = $GLOBALS['db']->prepare($sql);
 	$stmt->execute(array($_SESSION['id'], $id));
 
@@ -187,7 +190,7 @@ function getMoyBytheme($id){
 }
 
 function getClassement(){
-	$sql = "SELECT DISTINCT id_user FROM statistics WHERE id_user = ? ORDER BY score DESC;";
+	$sql = "SELECT DISTINCT id_user FROM statistics ORDER BY score DESC;";
 	$stmt = $GLOBALS['db']->prepare($sql);
 	$stmt->execute(array($_SESSION['id']));
 
@@ -203,16 +206,16 @@ function getClassement(){
 	$res = "";
 	switch ($rank) {
 		case 1:
-			$res = "1 st";
+			$res = "1st";
 			break;
 		case 2:
-			$res = "2 nd";
+			$res = "2nd";
 			break;
 		case 3:
-			$res = "3 rd";
+			$res = "3rd";
 			break;
 		default:
-			$res = $rank." th";
+			$res = $rank."th";
 			break;
 	}
 
