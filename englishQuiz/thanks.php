@@ -19,9 +19,9 @@
     <p class="centerWhite70">
         Thanks for your question !
     </p>
-    <p>
-    <a href="accueil.php" style="color:white;text-align:center">Go back home</a>
-    <a href="ajoutQuestion.php" style="color:white;text-align:center">Add another one</a>
+    <p style="text-align:center">
+    <a class="button" href="accueil.php" style="color:white;">Go back home</a>
+    <a class="button" href="ajoutQuestion.php" style="color:white;">Add another one</a>
     </p>
     </body>
 </html>
