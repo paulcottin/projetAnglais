@@ -11,7 +11,7 @@ if (!isset($_SESSION['nb_qts_posees'])) {
     $_SESSION['nb_qts_posees'] = 0;
 }
 
-if ($_SESSION['nb_qts_posees'] >3 || $_SESSION['nb_qts_posees'] >= $_SESSION['nb_qts_theme']-1) {
+if ($_SESSION['nb_qts_posees'] > 20 || $_SESSION['nb_qts_posees'] >= $_SESSION['nb_qts_theme']-1) {
     header("Location: resultat.php");
 }
 

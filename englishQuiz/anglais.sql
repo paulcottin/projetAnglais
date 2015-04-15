@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 14 Avril 2015 à 17:05
+-- Généré le :  Mer 15 Avril 2015 à 10:51
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -28,15 +28,15 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `questions` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `question` varchar(250) NOT NULL,
-  `rep1` varchar(50) NOT NULL,
-  `rep2` varchar(50) NOT NULL,
-  `rep3` varchar(50) NOT NULL,
-  `rep4` varchar(50) NOT NULL,
+  `question` varchar(250) CHARACTER SET latin1 NOT NULL,
+  `rep1` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `rep2` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `rep3` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `rep4` varchar(50) CHARACTER SET latin1 NOT NULL,
   `id_theme` int(2) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `question` (`question`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=39 ;
 
 --
 -- Contenu de la table `questions`
@@ -84,6 +84,46 @@ INSERT INTO `questions` (`id`, `question`, `rep1`, `rep2`, `rep3`, `rep4`, `id_t
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `statistics`
+--
+
+CREATE TABLE IF NOT EXISTS `statistics` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id_user` int(10) NOT NULL,
+  `score` int(10) NOT NULL DEFAULT '0',
+  `theme` int(2) DEFAULT NULL,
+  `note` int(2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+
+--
+-- Contenu de la table `statistics`
+--
+
+INSERT INTO `statistics` (`id`, `id_user`, `score`, `theme`, `note`) VALUES
+(4, 2, 19, 1, 0),
+(5, 2, 36, 99, 0),
+(6, 2, 37, 99, 0),
+(7, 3, 36, 99, 0),
+(8, 3, 36, 2, 0),
+(9, 4, 19, 2, 0),
+(10, 3, 55, 99, 0),
+(11, 3, 18241900, 99, 0),
+(12, 3, 1858, 99, 0),
+(13, 3, 5469, 99, 0),
+(14, 3, 5616, 99, 3),
+(15, 3, 3722, 2, 10),
+(16, 3, 1878, 99, 1),
+(17, 3, 0, 1, 0),
+(18, 3, 1887, 1, 1),
+(19, 2, 7446, 99, 4),
+(20, 2, 7446, 99, 4),
+(21, 2, 3785, 99, 2),
+(22, 2, 5541, 1, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `themes`
 --
 
@@ -123,16 +163,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   `mdp` varchar(10000) NOT NULL,
   `maxscore` int(10) DEFAULT '0',
   `nbparties` int(10) NOT NULL DEFAULT '0',
+  `nbQts` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `users`
 --
 
-INSERT INTO `users` (`id`, `prenom`, `nom`, `email`, `mdp`, `maxscore`, `nbparties`) VALUES
-(2, 'Paul', 'Cottin', 'paulcottin@gmail.com', '$2y$10$Lu/7UYwwuMPbRxiSUZCrDeWuF1vkfqx4sySRDTq9rLKVV42TcBMYO', 54, 6);
+INSERT INTO `users` (`id`, `prenom`, `nom`, `email`, `mdp`, `maxscore`, `nbparties`, `nbQts`) VALUES
+(2, 'Paul', 'Cottin', 'paulcottin@gmail.com', '$2y$10$Lu/7UYwwuMPbRxiSUZCrDeWuF1vkfqx4sySRDTq9rLKVV42TcBMYO', 54, 6, 0),
+(3, 'Vlad', 'Poutine', 'vlad@kremlin.ru', '$2y$10$.5cMat7IQ6FeU70TDtFtF.IhqXvXLrg4IqdFQD79PbjdBvZ7mEjBS', 0, 0, 0),
+(4, 'aa', 'aa', 'aa@aa.com', '$2y$10$WFs/7MbfUQRj70qLevBQdOwjHrGtrmSA7IGoy.O.OC0kXX0vWFwOK', 0, 0, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
