@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 15 Avril 2015 à 10:51
+-- Généré le :  Lun 27 Avril 2015 à 13:13
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `id_theme` int(2) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `question` (`question`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=38 ;
 
 --
 -- Contenu de la table `questions`
